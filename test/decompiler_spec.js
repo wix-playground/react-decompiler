@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
-import {decompile, formatted} from 'decompiler';
+import {decompile, formatted} from '../src/decompiler';
 
 describe('decompiler', () => {
 
@@ -158,7 +158,10 @@ describe('decompiler', () => {
   });
 
   it('stringify unnamed functions', () => {
-    let component = <div callback={() => foo} />;
+    function createUnnamedFn() {
+      return () => { foo; };
+    }
+    let component = <div callback={createUnnamedFn()} />;
 
     expect(decompile(component)).toBe('<div callback={function (){ ... }} />');
   });
