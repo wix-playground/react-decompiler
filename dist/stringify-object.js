@@ -1,9 +1,11 @@
-/* this is an monkey-patched copy of https://github.com/yeoman/stringify-object/blob/master/index.js */
 'use strict';
 
 var _reactAddonsTestUtils = require('react-addons-test-utils');
 
 var _decompiler = require('./decompiler');
+
+/* this is an monkey-patched copy of https://github.com/yeoman/stringify-object/blob/master/index.js */
+
 
 var isRegexp = require('is-regexp');
 var isPlainObj = require('is-plain-obj');
@@ -11,7 +13,7 @@ var isPlainObj = require('is-plain-obj');
 module.exports = function (val, opts, pad) {
   var seen = [];
 
-  return (function stringify(val, opts, pad) {
+  return function stringify(val, opts, pad) {
     opts = opts || {};
     opts.indent = opts.indent || '\t';
     pad = pad || '';
@@ -78,5 +80,5 @@ module.exports = function (val, opts, pad) {
     }
 
     return '\'' + val.replace(/'/g, '\\\'') + '\'';
-  })(val, opts, pad);
+  }(val, opts, pad);
 };

@@ -1,12 +1,11 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.formatted = exports.decompile = undefined;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
 var _reactAddonsTestUtils = require('react-addons-test-utils');
 
@@ -20,8 +19,12 @@ var _objectAssign = require('object-assign');
 
 var _objectAssign2 = _interopRequireDefault(_objectAssign);
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var getProps = function getProps(component) {
-  return (0, _objectAssign2['default'])((0, _objectAssign2['default'])(getAttribute('key', component), getAttribute('ref', component)), component.props);
+  return (0, _objectAssign2.default)((0, _objectAssign2.default)(getAttribute('key', component), getAttribute('ref', component)), component.props);
 };
 
 var getAttribute = function getAttribute(attribute, component) {
@@ -85,11 +88,11 @@ var stringifyFunction = function stringifyFunction(value) {
 };
 
 var stringifyValue = function stringifyValue(value) {
-  switch (typeof value) {
+  switch (typeof value === 'undefined' ? 'undefined' : _typeof(value)) {
     case 'function':
       return stringifyFunction(value);
     case 'object':
-      return (0, _stringifyObject2['default'])(value, { indent: ' ' }).replace(/\n|  /g, '');
+      return (0, _stringifyObject2.default)(value, { indent: ' ' }).replace(/\n|  /g, '');
     case 'undefined':
       return 'undefined';
     default:
@@ -105,10 +108,8 @@ var stringifyItems = function stringifyItems(components) {
   return [].concat(components).map(stringifyItem).join('');
 };
 
-var decompile = stringifyItems;
+var decompile = exports.decompile = stringifyItems;
 
-exports.decompile = decompile;
-var formatted = function formatted(items) {
+var formatted = exports.formatted = function formatted(items) {
   return (0, _jsBeautify.html)(stringifyItems(items), { indent_size: 2 });
 };
-exports.formatted = formatted;
