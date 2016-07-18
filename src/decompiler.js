@@ -13,7 +13,7 @@ const getProps = component =>
   );
 
 const getAttribute = (attribute, component) =>
-  component[attribute] ? {[attribute]: component[attribute]} : {};
+  component[attribute] ? { [attribute]: component[attribute] } : {};
 
 const getChildren = component => getProps(component).children;
 
@@ -56,7 +56,7 @@ const stringifyFunction = value =>
 const stringifyValue = value => {
   switch (typeof value) {
     case 'function': return stringifyFunction(value);
-    case 'object': return stringifyObject(value, {indent: ' '}).replace(/\n|  /g, '');
+    case 'object': return stringifyObject(value, { indent: ' ' }).replace(/\n|  /g, '');
     case 'undefined': return 'undefined';
     default: return value.toString();
   }
