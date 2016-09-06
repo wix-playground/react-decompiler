@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.formatted = exports.decompile = undefined;
+exports.formatted = exports.decompile = exports.options = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
@@ -87,12 +87,14 @@ var stringifyFunction = function stringifyFunction(value) {
   return value.toString().replace(/ {[\s\S]*/, '{ ... }');
 };
 
+var options = exports.options = { indent: ' ' };
+
 var stringifyValue = function stringifyValue(value) {
   switch (typeof value === 'undefined' ? 'undefined' : _typeof(value)) {
     case 'function':
       return stringifyFunction(value);
     case 'object':
-      return (0, _stringifyObject2.default)(value, { indent: ' ' }).replace(/\n|  /g, '');
+      return (0, _stringifyObject2.default)(value, options).replace(/\n|  /g, '');
     case 'undefined':
       return 'undefined';
     default:

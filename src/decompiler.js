@@ -53,14 +53,17 @@ const stringifyComponent = component =>
 const stringifyFunction = value =>
   value.toString().replace(/ {[\s\S]*/, '{ ... }')
 
+export const options = {indent: ' '};
+
 const stringifyValue = value => {
   switch (typeof value) {
     case 'function': return stringifyFunction(value);
-    case 'object': return stringifyObject(value, { indent: ' ' }).replace(/\n|  /g, '');
+    case 'object': return stringifyObject(value, options).replace(/\n|  /g, '');
     case 'undefined': return 'undefined';
     default: return value.toString();
   }
 }
+
 
 const stringifyItem = item =>
   isReact(item) ? stringifyComponent(item) : stringifyValue(item);

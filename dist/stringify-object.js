@@ -5,8 +5,6 @@ var _reactAddonsTestUtils = require('react-addons-test-utils');
 var _decompiler = require('./decompiler');
 
 /* this is an monkey-patched copy of https://github.com/yeoman/stringify-object/blob/master/index.js */
-
-
 var isRegexp = require('is-regexp');
 var isPlainObj = require('is-plain-obj');
 
