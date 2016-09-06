@@ -32,8 +32,14 @@ const getPropValue = (component, prop) =>
 const getFormatedPropValue = (propValue) =>
   typeof propValue === 'string' ? `"${stringifyItem(propValue)}"` : `{${stringifyItem(propValue)}}`;
 
-const getComponentProp = (component, prop) =>
-  getFormatedPropValue(getPropValue(component, prop));
+const getComponentProp = (component, prop) => {
+    const value = getPropValue(component, prop);
+    if(options.filter && options.filter(value, prop)){
+        return getFormatedPropValue(value);
+    } else {
+        return '"***filterd***"';
+    }
+}
 
 const appendStringifiedProp = component => (accumulated, prop) =>
   `${accumulated} ${prop}=${getComponentProp(component, prop)}`;
