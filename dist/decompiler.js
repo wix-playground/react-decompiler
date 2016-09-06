@@ -58,7 +58,12 @@ var getFormatedPropValue = function getFormatedPropValue(propValue) {
 };
 
 var getComponentProp = function getComponentProp(component, prop) {
-  return getFormatedPropValue(getPropValue(component, prop));
+    var value = getPropValue(component, prop);
+    if(options.filter && options.filter(value, prop)){
+        return getFormatedPropValue(value);
+    } else {
+        return '"***filterd***"';
+    }
 };
 
 var appendStringifiedProp = function appendStringifiedProp(component) {
